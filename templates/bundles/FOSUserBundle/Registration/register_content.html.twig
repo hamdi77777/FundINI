@@ -1,0 +1,78 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="page-wrapper bg-dark p-t-100 p-b-50">
+    <div class="wrapper wrapper--w900">
+        <div class="card card-6">
+            <div class="card-heading">
+                <h2 class="title">S'inscrire</h2>
+            </div>
+
+            <div class="card-body">
+
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'),
+                    'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                <!-- FirstName -->
+                <div class="form-row">
+                    <div class="name">Prénom</div>
+                    <div class="value">
+                        {{ form_widget(form.firstName, {'attr': {'class' : 'input--style-6'}}) }}
+                    </div>
+                </div>
+                <!-- LastName -->
+                <div class="form-row">
+                    <div class="name">Nom de la famille</div>
+                    <div class="value">
+                        {{ form_widget(form.lastName, {'attr': {'class' : 'input--style-6'}}) }}
+                    </div>
+                </div>
+                <!-- UserName -->
+                <div class="form-error">
+                    {{ form_errors(form.username) }}
+                </div>
+                <div class="form-row">
+                    <div class="name">Nom d'utilisateur</div>
+                    <div class="value">
+                        {{ form_widget(form.username, {'attr': {'class' : 'input--style-6'}}) }}
+                    </div>
+                </div>
+                <!-- Email -->
+                {{ form_errors(form.email, {'attr':{ 'class':'text-danger'} }) }}
+                <div class="form-row">
+                    <div class="name">Adresse Email</div>
+                    <div class="value">
+                        {{ form_widget(form.email, {'attr': {'class' : 'input--style-6', 'placeholder' : 'example@email.com'}}) }}
+                    </div>
+                </div>
+                <!-- Password -->
+                {{ form_errors(form.plainPassword.first, {'attr':{ 'class':'text-danger'} }) }}
+                <div class="form-row">
+                    <div class="name">Mot de passe</div>
+                    <div class="value">
+                        {{ form_widget(form.plainPassword.first, {'attr': {'class' : 'input--style-6'}}) }}
+                    </div>
+                </div>
+                <!-- Confirm Password -->
+                <div class="form-row">
+                    <div class="name">Confirmer Mot de passe</div>
+                    <div class="value">
+                        {{ form_widget(form.plainPassword.second, {'attr': {'class' : 'input--style-6'}}) }}
+                    </div>
+                </div>
+                    {{ form_errors(form) }}
+            </div>
+            <div class="card-footer">
+                <button class="btn btn--radius-2 btn--blue-2" type="submit">S'inscrire</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+{% extends 'base.html.twig'%} 
+{% block content %}
+<!-- Font Icon -->
+<link rel="stylesheet" href="{{asset('Post/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+
+<!-- Main css -->
+<link rel="stylesheet" href="{{asset('Post/css/style.css')}}">
+
+	<div class="grid-cause-area list-cause-area"> 
+<div class="select">   
+		<form action="{{ path('app_causes-list-category') }}"   method="POST">
+	     <select class="choix" name="categorie" id="categorie">
+			 <option value="tout">{{cat}}</option>
+	     {% for category in categories %}
+			   {% if ( cat != category ) %}
+	          <option name='categoriee'  value="{{category.title}}">{{category.title}}</option>
+         {% endif %}
+	     {% endfor %}
+			 <option value="tout">tout</option>
+
+	     </select>
+  			 
+			 <input type="submit" class="filtrer" value="Filtrer" />
+	     </form>
+   
+ 	
+</div>
+		<div class="containero-cause">
+ 
+        {% for post in posts|reverse %}
+			<div class="row">
+				<div class="cause content-box">
+					<div class="col-md-5 col-sm-6">
+					<a href="{{ path ('post_show_donation',{'id':post.id})}}">
+						<div class="img-wrapper">
+							<div class="overlay">
+							</div>
+							<img class="img-responsive" src="{{ asset ('uploads/files/' ~post.thumbnail)}}"  style="height:370px;" alt="">
+						</div>
+					</a>	
+					</div>
+					<div class="col-md-7 col-sm-6">
+						<div class="info-block">
+							<h4><a href="{{ path ('post_show_donation',{'id':post.id})}}">{{ post.title}}</a></h4>
+							<p>{{post.content}}</p>
+							<div class="foundings">
+								<div class="progress-bar-wrapper min">
+									<div class="progress-bar-outer">
+										<p class="values"><span class="value one">Raised: {{post.amount}} DT</span>-<span class="value two">To go: {{ post.fundingGoal}} DT</span></p>
+										<div class="progress-bar-inner">
+											<div class="progress-bar">
+											 {% set test = post.fundingGoal - post.amount %}
+												{% if test < 0 %}
+												<span data-percent="100"><span class="pretng">100 %</span> </span>
+												{% else %}
+													<span data-percent="{{ ((post.amount / post.fundingGoal)*100)|round }}"><span class="pretng">{{ ((post.amount / post.fundingGoal)*100)|round }} %</span> </span>
+												{% endif %}
+											</div>	
+										</div>		
+									</div>
+								</div>
+							</div>
+							<div class="donet_btn">
+
+							{% set datelimite = post.dateLimit|date('d-m-Y') %}
+							{% set today = "now"|date('d-m-Y') %}
+							{% if datelimite <  today %}
+							<p style ="color:red;"><i class="fa fa-archive"></i><span>Expiré le {{datelimite}}</span></p>
+							{% else %}
+							<a href="{{ path ('post_show_donation',{'id':post.id})}}" class="btn btn-min btn-solid"><i class="fa fa-archive"></i><span>Financer Maintenant</span></a>						
+							{% endif %}
+							</div>								
+						</div>								
+					</div>
+				</div>
+			</div>
+			 
+		{% endfor %}	 
+			<div class="pagination-wrapper">
+				<ul class="pagination">
+					<li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+					<li><a href="#">1</a></li>
+					<li><a href="#" class="active">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><span>...</span></li>
+					<li><a href="#">7</a></li>
+					<li><a href="#">8</a></li>
+					<li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+				</ul>
+			</div>
+		  </div>
+    </div>
+{% endblock %}

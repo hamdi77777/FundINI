@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FundINI</title>
+    <link rel="stylesheet" href="{{asset('Front/assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/assets/owl-carousel/assets/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/assets/css/meanmenu.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/assets/css/nivo-lightbox.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('toast/toast.css') }}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+<!-- header -->
+<header>
+    <div id="search-bar">
+        <div class="container">
+            <div class="row">
+                <form action="#" name="search" class="col-xs-12">
+                    <input type="text" name="search" placeholder="Type and Hit Enter"><i id="search-close" class="fa fa-close"></i>
+                </form>
+            </div>
+        </div>
+    </div>
+    <nav  class="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="logo-wrap col-md-3 col-xs-6">
+                    <a href="{{ path('app_home') }}">FundINI</a>
+                </div>
+                <div class="menu-wrap col-md-8 ">
+                    <ul class="menu">
+                        <li class="active">
+                            <a href="{{ path("app_home") }}" >Accueil</a>
+                        </li>
+                        <li>
+                            <span>Projets</span>
+                            <ul class="submenu">
+                                <li><a href="{{ path('app_causes-grid') }}">Grille</a></li>
+                                <li><a href="{{ path('app_causes-list') }}">Liste</a></li>
+                            </ul>
+                        </li>
+
+                        {% if is_granted('ROLE_USER') %}
+                        <li>
+                            <a href="{{ path ('post_new')}}">Lancer Votre Projet</a>
+                        </li>
+                        <li class="active">
+                            <span>{{ user.firstName }}</span>
+                            <ul class="submenu">
+                                <li><a href="{{ path('fos_user_profile_show') }}">Voir Profil</a></li>
+                                <li><a href="{{ path('fos_user_profile_edit') }}">Gérer Profil</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+                            </ul>
+                        </li>
+                        
+                        {% else %}
+                        <li>
+                            <a href="{{ path ('fos_user_security_login')}}">Se connecter</a>
+                        </li>
+                        <li>
+                            <a href="{{ path ('fos_user_registration_register')}}">S'inscrire</a>
+                        </li>
+
+                        {% endif %}
+                        <li>
+                            <a href="{{ path ('app_contact')}}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-1 col-xs-6">
+                    <div id="search-toggle">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+{% block content %}
+{% endblock %}
+<!-- Foter -->
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="about widget clearfix">
+                    <div class="logo-wrap">
+                        <a href="index.html">FundINI</a>
+                    </div>
+                    <p>Grace à votre soutien nous continuons à améliorer FundINI et
+                        soutenir les belles causes artistiques.</p>
+                    <div class="social-media-icons">
+                        <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+                        <a href="#"><i class="fa fa-google-plus"></i><span>Google +</span></a>
+                        <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                        <a href="#"><i class="fa fa-linkedin"></i><span>Linkedin</span></a>
+                        <a href="#"><i class="fa fa-skype"></i><span>Skype</span></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 ">
+                <div class="quick-links widget clearfix">
+                    <h4 class="title">Quick Links</h4>
+                    <div class="links">
+                        <a href="#"><i class="fa fa-angle-double-right"></i>A propos</a>
+                        <a href="#"><i class="fa fa-angle-double-right"></i>Termes d'utilisation</a>
+                        <a href="{{ path('app_contact') }}"><i class="fa fa-angle-double-right"></i>Contact</a>
+                        <a href="{{ path('app_causes-grid') }}"><i class="fa fa-angle-double-right"></i>Projets</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 ">
+                <div class="tags-outer widget clearfix">
+                    <h4 class="title">Tags</h4>
+                    <div class="tags">
+                        {% for tag in tags %}
+                            <a  href="{{ path ('app_tag',{'tag':tag.Name})}}"><span>{{tag.Name}}</span></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="subcribe widget clearfix">
+                    <h4 class="title">Restez à la page</h4>
+                    <p>S'inscrire à la newsletter afin de recevoir toutes les
+                        nouveautés de la plateforme.</p>
+                    <form action="#">
+                        <div class="field">
+                            <input type="email" name="e-mail" placeholder="Ton E-mail">
+                        </div>
+                        <div class="field">
+                            <button class="btn btn-min btn-solid"><span>S'inscrire</span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bar">
+        <div class="container">
+            <h5>Copyright ©2020  SQLi Services. Tous les droits sont réservés</h5>
+        </div>
+    </div>
+</footer>
+{% block javascripts %}
+<!-- Scripts -->
+<script type="text/javascript" src="{{asset('Front/assets/js/jquery2.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/jquery.meanmenu.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/progress-bar-appear.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/owl-carousel/owl.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/nivo-lightbox.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/isotope.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/countdown.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBEypW1XtGLWpikFPcityAok8rhJzzWRw "></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/gmaps.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/plugins.js')}}"></script>
+<script type="text/javascript" src="{{asset('Front/assets/js/js.js')}}"></script>
+
+<!-- JS -->
+<script src="{{asset('Post/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('Post/vendor/jquery-validation/dist/jquery.validate.min.js')}}"></script>
+<script src="{{asset('Post/vendor/jquery-validation/dist/additional-methods.min.js')}}"></script>
+<script src="{{asset('Post/vendor/jquery-steps/jquery.steps.min.js')}}"></script>
+<script src="{{asset('Post/vendor/minimalist-picker/dobpicker.js')}}"></script>
+<script src="{{asset('Post/vendor/jquery.pwstrength/jquery.pwstrength.js')}}"></script>
+<script src="{{asset('Post/js/main.js')}}"></script>
+
+    {% if is_granted('ROLE_USER') %}
+    <!-- Mercure script -->
+    <script>
+        const url = new URL('http://localhost:3000/.well-known/mercure');
+        url.searchParams.append('topic', 'http://monsite.com/notif/{{ user.id }}');
+        const eventSource = new EventSource(url)
+        eventSource.onmessage = e => {
+            var mydata = JSON.parse(e.data)
+            Toast.show(mydata.sender+' a versé '+ mydata.montant+'Dt '+'au projet '+mydata.project,'success')
+        }
+    </script>
+    <script type="text/javascript" src="{{ asset('toast/toast.js') }}"></script>
+    {% endif %}
+
+{% endblock %}
+</body>
+</html>
+

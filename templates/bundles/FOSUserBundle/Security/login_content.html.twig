@@ -1,0 +1,70 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+
+
+
+            <form class="login100-form validate-form" action="{{ path("fos_user_security_check") }}" method="post">
+                <span class="login100-form-title p-b-55">
+						Se connecter
+				</span>
+                {% if error %}
+                    <div class="alert-danger">Vérifier les champs ou activer compte par mail</div>
+                {% endif %}
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Ce champs est obligatoire">
+                    <input class="input100" type="text" id="username" name="_username" placeholder="Nom d'utilisateur" value="{{ last_username }}" required="required" autocomplete="username">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <span class="lnr lnr-user"></span>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Ce champs est obligatoire">
+                    <input class="input100" type="password" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Mot de passe">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+                </div>
+
+                <div class="contact100-form-checkbox m-l-4">
+                    <input class="input-checkbox100" id="remember_me" type="checkbox" name="_remember_me" value="on">
+                    <label class="label-checkbox100" for="remember_me">
+                        Se souvenir de moi
+                    </label>
+                </div>
+
+                <div class="container-login100-form-btn p-t-25">
+                    <button class="login100-form-btn btn-secondary" id="_submit" name="_submit">
+                        Se connecter
+                    </button>
+                </div>
+
+                <div class="text-center w-full p-t-115">
+						<span class="txt1">
+							Mot de passe oublié?
+						</span>
+
+                    <a class="txt1 bo1 hov1" href="{{ path('fos_user_resetting_request') }}">
+                        Récupérer
+                    </a>
+                </div>
+
+                <div class="text-center w-full ">
+						<span class="txt1">
+							Pas de compte?
+						</span>
+
+                    <a class="txt1 bo1 hov1" href="{{ path('fos_user_registration_register') }}">
+                        Enregistrer
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

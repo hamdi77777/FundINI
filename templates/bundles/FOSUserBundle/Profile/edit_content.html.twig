@@ -1,0 +1,182 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container"><h1>a</h1></div>
+<div class="container"><h1>a</h1></div>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row flex-lg-nowrap">
+        <div class="col">
+            <div class="row">
+                <div class="col mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="e-profile">
+                                <div class="row">
+                                    <div class="col-12 col-sm-auto mb-3">
+                                        <div class="mx-auto" style="width: 140px;">
+                                            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                <img src="{{ asset('images/profil/' ~ user.imageName) }}" style="width:140px;height:140px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{ user.firstName }} {{ user.lastName }}</h4>
+                                            <p class="mb-0">@ {{ user.username }}</p>
+                                            {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit', 'novalidate': 'novalidate' } }) }}
+                                            <div class="align-text-bottom">
+                                                {{ form_widget(form.imageFile, {'attr': {'class': 'btn-secondary'}}) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                                </ul>
+                                <div class="tab-content pt-3">
+                                    <div class="tab-pane active">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>First Name</label>
+                                                            {{ form_widget(form.firstName, {'attr': {'class' : 'form-control', 'placeholder' : user.firstName}}) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Last Name</label>
+                                                            {{ form_widget(form.lastName, {'attr': {'class' : 'form-control', 'placeholder' : user.lastName}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Titre</label>
+                                                            {{ form_widget(form.title, {'attr': {'class' : 'form-control', 'placeholder' : user.title}}) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Num. Téléphone</label>
+                                                            {{ form_widget(form.numTel, {'attr': {'class' : 'form-control', 'placeholder' : user.numTel}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label>Adresse</label>
+                                                    {{ form_widget(form.address, {'attr': {'class' : 'form-control', 'placeholder' : user.address}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col mb-3">
+                                                <div class="form-group">
+                                                    <label>A la une</label>
+                                                    {{ form_widget(form.about, {'attr': {'class' : 'form-control', 'placeholder' : user.about, 'type' :'textarea', 'rows' : '5'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 mb-3">
+                                                <div class="mb-2"><b>Liens</b></div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Site Web</label>
+                                                            {{ form_widget(form.website, {'attr': {'class' : 'form-control', 'placeholder' : user.website}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Facebook</label>
+                                                            {{ form_widget(form.facebook, {'attr': {'class' : 'form-control', 'placeholder' : user.facebook}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label><span class="d-none d-xl-inline">Instagram</span></label>
+                                                            {{ form_widget(form.instagram, {'attr': {'class' : 'form-control', 'placeholder' : user.instagram}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label><span class="d-none d-xl-inline">LinkedIn</span></label>
+                                                            {{ form_widget(form.linkedin, {'attr': {'class' : 'form-control', 'placeholder' : user.linkedin}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label><span class="d-none d-xl-inline">Github</span></label>
+                                                            {{ form_widget(form.github, {'attr': {'class' : 'form-control', 'placeholder' : user.github}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col d-flex justify-content-end">
+                                                <button class="btn btn-min btn-secondary" type="submit">Enregistrer Modifications</button>
+                                            </div>
+                                        </div>
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 mb-3">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="px-xl-3 text-lg-center">
+                                <a class="btn btn-min btn-secondary" href="{{ path('app_home') }}">
+                                    <i class="fa fa-sign-out"></i>
+                                    <span>Accueil</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-lg-center">
+                            <h6 class="card-title font-weight-bold text-lg-left">Changer mot de passe</h6>
+                            <p class="card-text text-lg-left">Vous pouvez tapez un nouveau mot de passe.</p>
+                            <a type="button" class="btn btn-min btn-secondary" href="{{ path('fos_user_change_password') }}">Modifier</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-lg-center">
+                            <h6 class="card-title font-weight-bold text-lg-left">Besoin d'aide?</h6>
+                            <p class="card-text text-lg-left">Vous pouvez contacter notre service client.</p>
+                            <button type="button" class="btn btn-min btn-secondary">Contact Support</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

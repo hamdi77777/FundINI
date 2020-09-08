@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>Mécénat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body{margin-top:20px;
+background:#eee;
+}
+
+/*Invoice*/
+.invoice .top-left {
+    font-size:65px;
+	color:#3ba0ff;
+}
+
+.invoice .top-right {
+	text-align:right;
+	padding-right:20px;
+}
+
+.invoice .table-row {
+	margin-left:-15px;
+	margin-right:-15px;
+	margin-top:25px;
+}
+
+.invoice .payment-info {
+	font-weight:500;
+}
+
+.invoice .table-row .table>thead {
+	border-top:1px solid #ddd;
+}
+
+.invoice .table-row .table>thead>tr>th {
+	border-bottom:none;
+}
+
+.invoice .table>tbody>tr>td {
+	padding:8px 20px;
+}
+
+.invoice .invoice-total {
+	margin-right:-10px;
+	font-size:16px;
+}
+
+.invoice .last-row {
+	border-bottom:1px solid #ddd;
+}
+
+.invoice-ribbon {
+	width:85px;
+	height:88px;
+	overflow:hidden;
+	position:absolute;
+	top:-1px;
+	right:14px;
+}
+
+.ribbon-inner {
+	text-align:center;
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	position:relative;
+	padding:7px 0;
+	left:-5px;
+	top:11px;
+	width:120px;
+	background-color:#66c591;
+	font-size:15px;
+	color:#fff;
+}
+
+.ribbon-inner:before,.ribbon-inner:after {
+	content:"";
+	position:absolute;
+}
+
+.ribbon-inner:before {
+	left:0;
+}
+
+.ribbon-inner:after {
+	right:0;
+}
+
+@media(max-width:575px) {
+	.invoice .top-left,.invoice .top-right,.invoice .payment-details {
+		text-align:center;
+	}
+
+	.invoice .from,.invoice .to,.invoice .payment-details {
+		float:none;
+		width:100%;
+		text-align:center;
+		margin-bottom:25px;
+	}
+
+	.invoice p.lead,.invoice .from p.lead,.invoice .to p.lead,.invoice .payment-details p.lead {
+		font-size:22px;
+	}
+
+	.invoice .btn {
+		margin-top:10px;
+	}
+}
+
+@media print {
+	.invoice {
+		width:900px;
+		height:800px;
+	}
+}
+    </style>
+</head>
+<body>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdeys">
+<div class="row">
+  <div class="col-sm-12">
+	  	<div class="panel panel-default invoice" id="invoice">
+		  <div class="panel-body">
+			<div class="invoice-ribbon"><div class="ribbon-inner">Mécénat</div></div>
+		    <div class="row">
+
+				<div class="col-sm-6 top-left">
+					<i class="fa fa-pencil-square-o"></i>
+				</div>
+
+				<div class="col-sm-6 top-right">
+						<h3 class="marginright">Réçu</h3>
+            {% set today = "now"|date('d-m-Y') %}
+						<span class="marginright">{{today}}</span>
+			    </div>
+
+			</div>
+			<hr>
+			<div class="row">
+
+				<div class="col-xs-4 from">
+				   
+					<p class="lead marginbottom">Par Monsieur : {{user.lastName}} </p>
+					<p>Adresse:{{user.address}}</p>
+					<p>Téléphone:{{user.numTel}}</p>
+					<p>Email:{{user.email}}</p>
+				</div>
+
+				<div class="col-xs-4 to">
+					<p class="lead marginbottom">vers Monsieur :  {{post.author}}</p>
+					<p>Projet:{{post.title}}</p>
+					<p>Organisation:{{post.organization}}</p>
+					<p>Location:{{post.location}}</p>
+					<p>Phone:{{post.phone}} </p>
+					 
+
+			    </div>
+
+			    <div class="col-xs-4  payment-details">
+					<p class="lead marginbottom payment-info">details de financement</p>
+					<p>Date:{{today}}</p>
+					<p>Somme versée:{{amount}} Dt</p>
+					<!--<p>VAT: DK888-777 </p>
+					<p>Total Amount: $1019</p>
+					<p>Account Name: Flatter</p>-->
+			    </div>
+
+			</div>
+
+			 
+
+			<div class="row">
+			<div class="col-xs-6 margintop">
+				<p class="lead marginbottom">Merci!</p>
+
+				<a href ="{{ asset ('mypdf.pdf')}}" class="btn btn-success" id="invoice-print">  Télécharger PDF</a>
+				<a href ="{{ path ('app_mail')}}" class="btn btn-danger" id="invoice-print"><i class="fa fa-envelope-o"></i> Recevoir Mail</a> 
+			</div>
+		 
+			</div>
+
+		  </div>
+		</div>
+	</div>
+</div>
+</div>
+ 
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="container">
+    <div class="main-body">
+
+        <!-- /Breadcrumb -->
+
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="{{ asset('images/profil/' ~ user.imageName) }}" class="rounded-circle" width="150" height="200">
+                            <div class="mt-3">
+                                <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+                                <p class="text-secondary mb-1">{{ user.title }}</p>
+                                <p class="text-muted font-size-sm">{{ user.address }}</p>
+                                <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-min btn-secondary"><span>Editer</span></a>
+                                <a href="{{ path('app_home') }}" class="btn btn-min btn-dark"><span>Retour</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
+                            <span class="text-secondary">{{ user.website }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github mr-2 icon-inline"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>Github</h6>
+                            <span class="text-secondary">{{ user.github }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin mr-2 icon-inline text-info"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path></svg>LinkedIn</h6>
+                            <span class="text-secondary">{{ user.linkedin }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
+                            <span class="text-secondary">{{ user.instagram }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
+                            <span class="text-secondary">{{ user.facebook }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Nom complet</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user.firstName }} {{ user.lastName }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Adresse Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user.email }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Titre</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user.title }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Mobile</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user.numTel }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Adresse</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ user.address }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% for post in posts %}
+                <div class="row gutters-sm">
+                    <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">{{ post.title}}</i>Status Projet</h4>
+                                <h6 class="text-secondary text-lg-right">Date de création: </h6>
+                                <h5> <span class="text-info" style="">{{ post.amount }} Dt </span><span class="text-dark">Recoltés sur un objectif de {{ post.fundingGoal }} Dt</span> </h5>
+                                <div class="progress-bar-inner">
+                                    <div class="progress-bar bg-dark" >
+                                        <span data-percent= "{{ ((post.amount / post.fundingGoal)*100)|round }}"><span class="pretng">{{ ((post.amount / post.fundingGoal)*100)|round }}%</span> </span>
+                                    </div>
+                                </div>
+                                <div class="mt-3 text-lg-center" >
+                                <a href="{{ path ('post_edit',{'id':post.id})}}" class="btn btn-min btn-secondary"><span>Editer</span></a>
+                                <a href="{{ path ('post_delete',{'id':post.id})}}" class="btn btn-min btn-danger"><span>Supprimer</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+

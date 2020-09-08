@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V11</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{{ asset("loginAssets/images/icons/favicon.ico") }}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/vendor/bootstrap/css/bootstrap.min.css") }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/fonts/font-awesome-4.7.0/css/font-awesome.min.css") }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css") }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/vendor/animate/animate.css") }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/vendor/css-hamburgers/hamburgers.min.css") }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/vendor/select2/select2.min.css") }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/css/util.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("loginAssets/css/main.css") }}">
+    <!--===============================================================================================-->
+</head>
+<body>
+{% block fos_user_content %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+{% endblock fos_user_content %}
+<!--===============================================================================================-->
+<script src="{{ asset('loginAssets/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('loginAssets/vendor/bootstrap/js/popper.js') }}"></script>
+<script src="{{ asset('loginAssets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('loginAssets/vendor/select2/select2.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('loginAssets/js/main.js') }}"></script>
+
+</body>
+</html>

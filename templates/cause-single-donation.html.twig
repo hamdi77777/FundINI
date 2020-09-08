@@ -1,0 +1,143 @@
+{% extends 'base.html.twig'%} 
+{% block content %}
+<!-- Font Icon -->
+<link rel="stylesheet" href="{{asset('Post/fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+
+<!-- Main css -->
+<link rel="stylesheet" href="{{asset('Post/css/style.css')}}">
+
+	<!-- Causes Wrapper -->
+	 
+		<div class="containero-cause-profile">
+			<div class="row cause">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="image-wrapper">
+						<img class="img-responsive" src="{{ asset ('uploads/files/' ~post.thumbnail)}}" style="width:1200px; height:400px;" alt="">
+					</div>
+					<div class="meta">
+						<h2> {{post.title}}</h2>
+						<div class="short-stats clearfix">
+							<h5><i class="fa fa-heart-o"></i> {{post.donors}} contributions</h5>
+							{% set datePost = post.createdAt|date('d-m-Y') %}
+							{% set today = "now"|date('d-m-Y') %}
+							{% set difference = date(today).diff(date(datePost))%}
+							{% set leftDays = difference.days %}
+							<h5><i class="fa fa-clock-o"></i>{{ leftDays }} Jours</h5>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="foundings">
+							<div class="progress-bar-wrapper min">
+								<div class="progress-bar-outer">
+								
+									<p class="values"><span class="value one">Rised: {{post.amount}} DT</span>/<span class="value two"> To go: {{ post.fundingGoal}} DT</span></p>
+									<div class="progress-bar-inner">
+										<div class="progress-bar">
+											{% set test = post.fundingGoal - post.amount %}
+												{% if test < 0 %}
+												<span data-percent="100"><span class="pretng">100 %</span> </span>
+												{% else %}
+													<span data-percent="{{ ((post.amount / post.fundingGoal)*100)|round }}"><span class="pretng">{{ ((post.amount / post.fundingGoal)*100)|round }} %</span> </span>
+												{% endif %}
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+
+						{% set datelimite = post.dateLimit|date('d-m-Y') %}
+						{% set today = "now"|date('d-m-Y') %}
+						{% if datelimite <  today %}
+						<div class="info-block">
+						<p>{{post.content}}</p>
+					    </div>
+						<p style ="color:red;"><i class="fa fa-archive"></i><span>Expiré le {{datelimite}}</span></p>
+						{% else %}
+
+					<a href="#donate" class="btn btn-big btn-solid "><i class="fa fa-archive"></i><span>Financer Maintenant</span></a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		 <div class="donation-wrapper" id="donate">
+			<div class="containero-cause-profile" >
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="donation clearfix">
+							<ul class="tabs-switcher nav nav-tabs clearfix">
+								<li class="active">
+									<a data-toggle="tab" href="#tab-1"><i class="fa fa-paypal"></i>PayPlay</a>
+								</li>
+								<li>
+									<a data-toggle="tab" href="#tab-2"><i class="fa fa-cc-visa"></i>Visa / MasterCard</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane row active" id="tab-1">
+									<p class="col-xs-12">Grace à votre soutien nous continuons à améliorer FundINI et soutenir les belles causes artistiques.</p>
+									<form class="donation-form col-xs-12 row" action="{{ path('app_fund', {'id':post.id}) }}" method="POST">
+										<div class="field col-sm-6">
+											<h4>Montant</h4>
+											<div class="radio-inputs">
+												<input type="text" id="amount" name="amount" >
+												<input type="submit" value="Financer Maintenant" />
+												 
+											</div>
+										</div>
+										
+							      
+									</form>
+								</div>
+								<div class="tab-pane row" id="tab-2">
+									<p class="col-xs-12">Grace à votre soutien nous continuons à améliorer FundINI et soutenir les belles causes artistiques.</p>
+									<form class="donation-form col-xs-12 row" action="{{ path('app_fund', {'id':post.id}) }}" method="POST">
+										<div class="field col-sm-6">
+											<h4>Prénom</h4>
+											<input type="text" name="First Name">
+										</div>
+										<div class="field col-sm-6">
+											<h4>Nom</h4>
+											<input type="text" name="Last Name">
+										</div>
+										<div class="field col-sm-6">
+											<h4>Montant</h4>
+											<div class="form-group">
+												<input type="text" id="amount" name="amount">
+												 
+											</div>
+										</div>
+										 
+										<div class="field col-sm-6">
+											<h4>Carte de crédit</h4>
+											<select name="Credit Crad" id="credit_card">
+												<option value="Visa">Visa</option>
+												<option value="Master Card">Master Card</option>
+											</select>
+										</div>
+										<div class="field col-sm-4">
+											<h4>Numéro de carte</h4>
+											<input type="text" name="Card Number">
+											<h4>CVC</h4>
+											<input type="text" name="CVC">
+										</div>
+										 
+										 
+										<div class="field col-sm-12">
+											 <input type="submit" value="Financer Maintenant" />
+										</div>
+										{% endif %}
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+							 
+	 
+
+{% endblock %}

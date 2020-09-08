@@ -1,0 +1,98 @@
+easy_admin:
+  design:
+    assets:
+      css:
+        - '/bs-tags/bootstrap-tagsinput.css'
+      js:
+        - '/bs-tags/bootstrap-tagsinput.js'
+    menu:
+      - {label: "Entities"}
+      - label: "Posts"
+        children:
+          - {entity: Post, label: "Posts list", icon: "th-list"}
+          - {entity: Post, label: "Add post", icon: "plus", params: {action: 'new'}}
+      - label: "Category"
+        children:
+          - {entity: Category, label: "List all categories", icon: "th-list"}
+          - {entity: Category, label: "Add category", icon: "plus", params: {action: 'new'}}
+      - Tag
+      - {label: "Settings"}
+      - {entity: User, icon: "user"}
+  site_name: 'FundINI__<b>Admin</b>'
+  user:
+    display_name: true
+    display_avatar: true
+    name_property_path: 'username'
+  entities:
+    Post:
+      class: App\Entity\Post
+      label: "Post"
+      form:
+        fields:
+          - {type: 'group', icon: 'pencil', label: 'Basic Information', css_class: 'col-lg-7'}
+          - title
+          - content
+          - dateLimit
+          - fundingGoal
+          - published
+          - organization
+          - {type: 'group', icon: 'th-list', label: 'Other Information', css_class: 'col-lg-5'}
+          - category
+          - tags
+          - { property: 'tags', type: 'App\Form\TagType', type_options: {attr: {data-role: 'tagsinput'}}}
+          - {type: 'group', icon: 'clip', label: 'Attachments', css_class: 'col-lg-5'}
+          - { property: 'thumbnailFile', type: 'vich_image' }
+      list:
+        collapse_actions: true
+        actions: ['show', 'edit', 'delete']
+        batch_actions: ['delete']
+        title: "Projects"
+        fields: ['title','author','createdAt','dateLimit','published','fundingGoal','organization','donors','category','user', {property: 'thumbnail', type: 'image', base_path: '%uploads_path%'}]
+        filters: ['published','createdAt','category']
+      show:
+        fields:
+          - title
+          - author
+          - {property: 'content', type: 'raw'}
+          - organization
+          - createdAt
+          - updatedAt
+          - published
+          - dateLimit
+          - fundingGoal
+          - donors
+          - amount
+          - {property: 'thumbnail', type: 'image', base_path: '%uploads_path%'}
+          - category
+          - user
+          - tags
+      edit:
+        help: "Hello there"
+        fields:
+          - tags
+
+
+
+
+    Category:
+      class: App\Entity\Category
+      form:
+        fields:
+          - title
+          - posts
+    Tag:
+      class: App\Entity\Tag
+      form:
+        fields:
+          - name
+    User:
+      class: App\Entity\User
+      form:
+        fields:
+          - username
+          - email
+          - enabled
+          - lastLogin
+          # if administrators are allowed to edit users' passwords and roles, add this:
+          - { property: 'plainPassword', type: 'text', type_options: { required: false } }
+          - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <!-- Banner -->
+    <div class="page-banner">
+        <div class="container">
+            <div class="parallax-mask"></div>
+        </div>
+    </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+{% endblock %}

@@ -251,6 +251,16 @@ class SecurityController extends AbstractController
             ->setBody("Une contribution de ".$amount."  de la part de MR/MM : ".$nom." en faveur de votre projet sous le titre :".$title);
 
             $mailer->send($message);
+        $update = new Update(
+            "http://monsite.com/notif/{$post->getUser()->getId()}",
+            json_encode(['montant' => $amount,
+                        'sender'=> $this->getUser()->getUsername(),
+                        'project'=> $post->getTitle()]),
+            false
+        );
+
+        // The Publisher service is an invokable object
+        $publisher($update);
          
 
         

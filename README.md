@@ -1,2 +1,2 @@
 # FundINI
-FundINI is a crowdfunding platform 
+FundINI is a CrowdFunding Platform.
